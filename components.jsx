@@ -245,11 +245,6 @@ const Nav = ({ page, setPage, brand = "Atlas Construction", tagline = "" }) => {
     </nav>
   );
 };
-        </button>
-      </div>
-    </nav>
-  );
-};
 
 // ====== TICKER ======
 

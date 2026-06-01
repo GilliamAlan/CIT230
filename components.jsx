@@ -202,6 +202,7 @@ const Photo = ({ kind = "kitchen", tone = "warm", src, alt = "", label }) => {
 
 const Nav = ({ page, setPage, brand = "Atlas Construction", tagline = "" }) => {
   const [scrolled, setScrolled] = React.useState(false);
+  const [menuOpen, setMenuOpen] = React.useState(false);
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", onScroll);
@@ -216,8 +217,7 @@ const Nav = ({ page, setPage, brand = "Atlas Construction", tagline = "" }) => {
     ["contact", "Contact"],
   ];
   return (
-    <nav className={`nav${scrolled ? " scrolled" : ""}`}>
-      <div className="nav-inner">
+<nav className={`nav${scrolled ? " scrolled" : ""}${menuOpen ? " nav-open" : ""}`}>      <div className="nav-inner">
         <a className="brand" href="#home" onClick={(e) => { e.preventDefault(); setPage("home"); }}>
           <span className="brand-mark">A</span>
           <span>
@@ -226,6 +226,7 @@ const Nav = ({ page, setPage, brand = "Atlas Construction", tagline = "" }) => {
           </span>
         </a>
         <div className="nav-links">
+          const navigate = (id) => { setPage(id); setMenuOpen(false); };
           {links.map(([id, label]) => (
             <a
               key={id}
@@ -241,8 +242,9 @@ const Nav = ({ page, setPage, brand = "Atlas Construction", tagline = "" }) => {
           <span className="nav-cta-dot"></span>
           Free Estimate
         </a>
-        <button className="nav-toggle" aria-label="Menu"><span></span></button>
-      </div>
+<button className="nav-toggle" aria-label="Menu" onClick={() => setMenuOpen(o => !o)}>
+  <span></span>
+</button>      </div>
     </nav>
   );
 };

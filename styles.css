@@ -221,6 +221,33 @@ section { padding: var(--section) 0; }
 
 @media (max-width: 900px) {
   .nav-links { display: none; }
+  .nav-open .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    box-shadow: var(--shadow-2);
+    padding: 8px 0 16px;
+  }
+  .nav-open .nav-link {
+    border-radius: 0;
+    padding: 14px var(--gutter);
+    font-size: 16px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .nav-open .nav-link:last-child { border-bottom: none; }
+  .nav-open .nav-link.active::after { display: none; }
+  .nav-open .nav-toggle span { background: transparent; }
+  .nav-open .nav-toggle span::before { transform: rotate(45deg); top: 0; }
+  .nav-open .nav-toggle span::after { transform: rotate(-45deg); top: 0; } {
+  .nav-links { display: none; }
   .nav-toggle {
     display: grid;
     place-items: center;

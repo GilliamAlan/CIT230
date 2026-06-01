@@ -202,7 +202,6 @@ const Photo = ({ kind = "kitchen", tone = "warm", src, alt = "", label }) => {
 
 const Nav = ({ page, setPage, brand = "Atlas Construction", tagline = "" }) => {
   const [scrolled, setScrolled] = React.useState(false);
-  const [menuOpen, setMenuOpen] = React.useState(false);
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", onScroll);
@@ -216,11 +215,10 @@ const Nav = ({ page, setPage, brand = "Atlas Construction", tagline = "" }) => {
     ["about", "About"],
     ["contact", "Contact"],
   ];
-  const navigate = (id) => { setPage(id); setMenuOpen(false); };
   return (
-    <nav className={`nav${scrolled ? " scrolled" : ""}${menuOpen ? " nav-open" : ""}`}>
+    <nav className={`nav${scrolled ? " scrolled" : ""}`}>
       <div className="nav-inner">
-        <a className="brand" href="#home" onClick={(e) => { e.preventDefault(); navigate("home"); }}>
+        <a className="brand" href="#home" onClick={(e) => { e.preventDefault(); setPage("home"); }}>
           <span className="brand-mark">A</span>
           <span>
             {brand}
@@ -232,19 +230,21 @@ const Nav = ({ page, setPage, brand = "Atlas Construction", tagline = "" }) => {
             <a
               key={id}
               href={`#${id}`}
-              onClick={(e) => { e.preventDefault(); navigate(id); }}
+              onClick={(e) => { e.preventDefault(); setPage(id); }}
               className={`nav-link${page === id ? " active" : ""}`}
             >
               {label}
             </a>
           ))}
         </div>
-        <a href="#contact" onClick={(e) => { e.preventDefault(); navigate("contact"); }} className="nav-cta">
+        <a href="#contact" onClick={(e) => { e.preventDefault(); setPage("contact"); }} className="nav-cta">
           <span className="nav-cta-dot"></span>
           Free Estimate
         </a>
-        <button className="nav-toggle" aria-label="Menu" onClick={() => setMenuOpen(o => !o)}>
-          <span></span>
+      </div>
+    </nav>
+  );
+};
         </button>
       </div>
     </nav>

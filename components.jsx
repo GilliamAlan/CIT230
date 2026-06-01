@@ -216,9 +216,11 @@ const Nav = ({ page, setPage, brand = "Atlas Construction", tagline = "" }) => {
     ["about", "About"],
     ["contact", "Contact"],
   ];
+  const navigate = (id) => { setPage(id); setMenuOpen(false); };
   return (
-<nav className={`nav${scrolled ? " scrolled" : ""}${menuOpen ? " nav-open" : ""}`}>      <div className="nav-inner">
-        <a className="brand" href="#home" onClick={(e) => { e.preventDefault(); setPage("home"); }}>
+    <nav className={`nav${scrolled ? " scrolled" : ""}${menuOpen ? " nav-open" : ""}`}>
+      <div className="nav-inner">
+        <a className="brand" href="#home" onClick={(e) => { e.preventDefault(); navigate("home"); }}>
           <span className="brand-mark">A</span>
           <span>
             {brand}
@@ -226,25 +228,25 @@ const Nav = ({ page, setPage, brand = "Atlas Construction", tagline = "" }) => {
           </span>
         </a>
         <div className="nav-links">
-          const navigate = (id) => { setPage(id); setMenuOpen(false); };
           {links.map(([id, label]) => (
             <a
               key={id}
               href={`#${id}`}
-              onClick={(e) => { e.preventDefault(); setPage(id); }}
+              onClick={(e) => { e.preventDefault(); navigate(id); }}
               className={`nav-link${page === id ? " active" : ""}`}
             >
               {label}
             </a>
           ))}
         </div>
-        <a href="#contact" onClick={(e) => { e.preventDefault(); setPage("contact"); }} className="nav-cta">
+        <a href="#contact" onClick={(e) => { e.preventDefault(); navigate("contact"); }} className="nav-cta">
           <span className="nav-cta-dot"></span>
           Free Estimate
         </a>
-<button className="nav-toggle" aria-label="Menu" onClick={() => setMenuOpen(o => !o)}>
-  <span></span>
-</button>      </div>
+        <button className="nav-toggle" aria-label="Menu" onClick={() => setMenuOpen(o => !o)}>
+          <span></span>
+        </button>
+      </div>
     </nav>
   );
 };

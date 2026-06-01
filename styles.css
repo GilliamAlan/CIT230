@@ -244,10 +244,6 @@ section { padding: var(--section) 0; }
   }
   .nav-open .nav-link:last-child { border-bottom: none; }
   .nav-open .nav-link.active::after { display: none; }
-  .nav-open .nav-toggle span { background: transparent; }
-  .nav-open .nav-toggle span::before { transform: rotate(45deg); top: 0; }
-  .nav-open .nav-toggle span::after { transform: rotate(-45deg); top: 0; } {
-  .nav-links { display: none; }
   .nav-toggle {
     display: grid;
     place-items: center;
@@ -261,12 +257,17 @@ section { padding: var(--section) 0; }
     height: 1.5px;
     background: var(--ink);
     position: relative;
+    transition: background 0.2s;
   }
   .nav-toggle span::before, .nav-toggle span::after {
     content: ""; position: absolute; left: 0; width: 16px; height: 1.5px; background: var(--ink);
+    transition: transform 0.2s, top 0.2s;
   }
   .nav-toggle span::before { top: -5px; }
   .nav-toggle span::after { top: 5px; }
+  .nav-open .nav-toggle span { background: transparent; }
+  .nav-open .nav-toggle span::before { transform: rotate(45deg); top: 0; }
+  .nav-open .nav-toggle span::after { transform: rotate(-45deg); top: 0; }
 }
 
 /* ====== BUTTONS ====== */
@@ -1302,7 +1303,6 @@ section { padding: var(--section) 0; }
 /* ====== UTIL ====== */
 
 .fade-in {
-  /* Animation disabled — was causing html-to-image capture issues */
   opacity: 1;
 }
 @keyframes fadeIn {
@@ -1312,8 +1312,6 @@ section { padding: var(--section) 0; }
 .fade-in.delay-1 { animation-delay: 0.1s; }
 .fade-in.delay-2 { animation-delay: 0.2s; }
 .fade-in.delay-3 { animation-delay: 0.3s; }
-
-
 
 /* ====== KITCHEN GALLERY ====== */
 
@@ -1334,7 +1332,6 @@ section { padding: var(--section) 0; }
   .kgal-3up, .kgal-2-1, .kgal-1-2 { grid-template-columns: 1fr; height: auto; }
   .kgal-row img { aspect-ratio: 4 / 3; height: auto; }
 }
-
 
 /* ====== BATH PROJECT SECTIONS ====== */
 
@@ -1388,7 +1385,6 @@ section { padding: var(--section) 0; }
 @media (max-width: 880px) {
   .bproj-head { grid-template-columns: 1fr; }
 }
-
 
 /* ====== COMPANY SNAPSHOT ====== */
 
@@ -1520,13 +1516,11 @@ section { padding: var(--section) 0; }
   .testi-grid { grid-template-columns: 1fr; }
 }
 
-
 /* 2-up row for basement gallery */
 .kgal-2up { grid-template-columns: 1fr 1fr; height: clamp(360px, 38vw, 560px); }
 @media (max-width: 760px) {
   .kgal-2up { grid-template-columns: 1fr; height: auto; }
 }
-
 
 /* ====== KITCHEN EDITORIAL — APPROACH ====== */
 
@@ -1683,7 +1677,6 @@ section { padding: var(--section) 0; }
   .offer-grid { grid-template-columns: 1fr; }
   .offer-grid li { padding-left: 0 !important; }
 }
-
 
 /* ====== ABOUT — VISION / MISSION / VALUES ====== */
 

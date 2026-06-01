@@ -1,0 +1,8 @@
+{
+  "name": "atlas-construction",
+  "version": "1.0.0",
+  "description": "Atlas Construction - Kitchen, Bath & Basement Remodeling",
+  "scripts": {
+    "build": "echo 'Static site — no build step required'"
+  }
+}
